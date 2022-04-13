@@ -1,4 +1,0 @@
-URL=jdbc:postgresql://localhost:5432/postgres
-USER_NAME=Father
-STRING_PASS=1231
-SECONDLIVE=60000
