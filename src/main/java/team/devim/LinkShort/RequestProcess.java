@@ -47,27 +47,8 @@ public class RequestProcess {
         return sb.toString();
     }
 
-    Boolean keyActive(String key){
-        ResultSet result;
-        Date date;
-        try {
-            result = dao.getResultSet(key);
-            result.next();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            date = dateFormat.parse(result.getString(3));
-        } catch (SQLException | ParseException e) {
-            log.error("Ошибка проверки активности ссылки", e);
-            return false;
-        }
-        Date date1 = new Date();
-        int secondLive = Integer.parseInt(System.getenv("SECONDLIVE") ) * 1000;
-        if ((date1.getTime() - date.getTime()) > secondLive){
-            return false;
-        }else return true;
-    }
-
     String getForwarding(String key){
-        if (!keyActive(key)){
+        if (!dao.keyActive(key)){
             return "Ссылка больше не активна или не записана";
         }
         ResultSet result;
