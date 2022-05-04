@@ -73,7 +73,7 @@ public class DAOImpl implements DAO, Constants{
         statement.setString(1, url);
         ResultSet result = statement.executeQuery();
         result.next();
-        String res = String.format("http://localhost:4567/%s", result.getString(1));
+        String res = String.format("http://localhost:4567/%s", result.getString(2));
 
         Timestamp timestamp = new Timestamp(new Date().getTime());
         PreparedStatement statement1 = connection.prepareStatement("update shorturl set \"time\"=? where url = ?");

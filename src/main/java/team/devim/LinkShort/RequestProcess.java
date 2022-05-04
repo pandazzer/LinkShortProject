@@ -56,7 +56,7 @@ public class RequestProcess {
         try {
             result = dao.getResultSet(key);
             result.next();
-            url = result.getString(2);
+            url = result.getString(1);
             log.info("Выдана ссылка");
         } catch (SQLException e) {
             log.error("Ошибка возвращения ссылки");
