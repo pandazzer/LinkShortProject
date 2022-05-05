@@ -1,12 +1,13 @@
 package team.devim.LinkShort;
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "shorturl")
-public class Hiber {
+public class IncomingURL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -14,11 +15,11 @@ public class Hiber {
     @Column
     String url;
     String short_url;
-    Date time;
+    Timestamp time;
 
-    public Hiber() {}
+    public IncomingURL() {}
 
-    public Hiber(String url, String short_url, Date time) {
+    public IncomingURL(String url, String short_url, Timestamp time) {
         this.url = url;
         this.short_url = short_url;
         this.time = time;
@@ -44,11 +45,11 @@ public class Hiber {
         this.short_url = short_url;
     }
 
-    public Date getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 }
