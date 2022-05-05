@@ -8,11 +8,8 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "shorturl")
 public class IncomingURL {
+    int id;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column
     String url;
     String short_url;
     Timestamp time;

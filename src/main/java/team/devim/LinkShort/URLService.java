@@ -13,24 +13,25 @@ public class URLService {
 
     private  URLDAO urldao;
 
+    DAO dao;
+
     private static final Logger log =  LogManager.getLogger(Main.class);
 
     public URLService() {
         this.urldao = new URLDAO();
     }
-    DAO dao;
-
 
     String getCutUrl(String url){
         try {
             String str = urldao.findByURL(url);
             log.info("Ссылка уже записана");
-            return str;
+            String res = String.format("http://localhost:4567/%s", str);
+            return res;
         } catch (Exception e) {
             log.info("Ссылка не записана");
             String shortURL = getShortUrl();
             Timestamp date = new Timestamp(new Date().getTime());
-            urldao.add(new IncomingURL(shortURL, url, date));
+            urldao.add(new IncomingURL(url ,shortURL, date));
             String res = String.format("http://localhost:4567/%s", shortURL);
             return res;
         }

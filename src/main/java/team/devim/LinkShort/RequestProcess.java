@@ -25,7 +25,8 @@ public class RequestProcess {
         try {
             String str = dao.getUrl(url);
             log.info("Ссылка уже записана");
-            return str;
+            String res1 = String.format("http://localhost:4567/%s", str);
+            return res1;
         } catch (SQLException e) {
             log.info("Ссылка не записана");
             String shortURL = getShortUrl();

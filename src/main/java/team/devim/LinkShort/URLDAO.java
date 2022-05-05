@@ -30,6 +30,8 @@ public class URLDAO {
     }
 
     public String findByURL(String URL){
+        System.out.println(URL);
+        System.out.println();
         return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(IncomingURL.class, URL).getShort_url();
     }
 }
