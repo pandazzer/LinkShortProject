@@ -2,10 +2,11 @@ package team.devim.LinkShort;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class URLDAO {
 
-    public void add(IncomingURL incomingURL){
+    public void add(IncomingURL incomingURL) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.save(incomingURL);
@@ -13,7 +14,7 @@ public class URLDAO {
         session.close();
     }
 
-    public void update(IncomingURL incomingURL){
+    public void update(IncomingURL incomingURL) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(incomingURL);
@@ -21,7 +22,7 @@ public class URLDAO {
         session.close();
     }
 
-    public void delete(IncomingURL incomingURL){
+    public void delete(IncomingURL incomingURL) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.delete(incomingURL);
@@ -29,9 +30,17 @@ public class URLDAO {
         session.close();
     }
 
-    public String findByURL(String URL){
-        System.out.println(URL);
-        System.out.println();
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(IncomingURL.class, URL).getShort_url();
+    public IncomingURL findByURL(String URL) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(IncomingURL.class, URL);
     }
+
+    public IncomingURL findByKey(String key) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("From IncomingURL where short_url=:key", IncomingURL.class)
+                .setParameter("key", key);
+        IncomingURL url = (IncomingURL) query.getSingleResult();
+        return url;
+    }
+
+
 }

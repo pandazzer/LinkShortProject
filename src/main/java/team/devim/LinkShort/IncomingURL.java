@@ -1,29 +1,26 @@
 package team.devim.LinkShort;
 
 
-import javax.persistence.*;
-import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "shorturl")
 public class IncomingURL {
-    int id;
     @Id
     String url;
     String short_url;
     Timestamp time;
 
-    public IncomingURL() {}
+    public IncomingURL() {
+    }
 
     public IncomingURL(String url, String short_url, Timestamp time) {
         this.url = url;
         this.short_url = short_url;
         this.time = time;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getUrl() {
